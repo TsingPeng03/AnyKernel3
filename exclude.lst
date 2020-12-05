@@ -1,0 +1,6 @@
+# filter
+.git/*
+LICENSE
+README.md
+exclude.lst
+*.zip
