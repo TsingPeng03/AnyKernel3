@@ -1,0 +1,6 @@
+id=Tsing_Kernel
+name=TK Manager
+version=1.8
+versionCode=1205
+author=TsingPeng
+description=TsingKernel dedicated module, including Spectrum support and Nethunter network card driver support and other functions.
