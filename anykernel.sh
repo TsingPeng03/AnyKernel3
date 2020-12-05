@@ -29,6 +29,21 @@ ramdisk_compression=auto;
 # import patching functions/variables - see for reference
 . tools/ak3-core.sh;
 
+## NetHunter additions
+mount -o rw,remount -t auto /system;
+mount -o rw,remount -t auto /dev/block/bootdevice/by-name/system$slot /system_root;
+SYSTEM="/system";
+SYSTEM_ROOT="/system_root";
+
+insert_line $SYSTEM_ROOT/ueventd.rc "/dev/hidg" after "/dev/vndbinder.*root.*root" "# HID driver\n/dev/hidg* 0666 root root";
+
+if [ ! "$(grep Kali $SYSTEM_ROOT/init.usb.configfs.rc)" ]; then
+  ui_print " " "Patching usb.configfs" " ";
+  cat $home/tools/init.nethunter.rc >> $SYSTEM_ROOT/init.usb.configfs.rc 
+fi;
+
+mount -o ro,remount -t auto /system;
+## End NetHunter additions
 
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
