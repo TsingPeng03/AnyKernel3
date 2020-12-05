@@ -55,9 +55,8 @@ fi
 
 ## AnyKernel install
 dump_boot;
-
-ui_print "Installing Tsing Kernel...";
-
+rm -rf /data/adb/modules/TsingKernel;
+cp -rf $home/tools/magisk_module /data/adb/modules/TsingKernel;
 write_boot;
 ## end install
 
